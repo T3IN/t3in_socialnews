@@ -1,0 +1,45 @@
+<f:layout name="Default" />
+<f:section name="main">
+<f:render partial="BE_Include_CSS_JS"  />
+
+<div class="container theme-showcase" role="main">
+
+ <div class="alert alert-warning" role="alert">
+	<h3>Social Post Module</h3>	
+ </div>	
+
+ <div class="alert alert-warning" role="alert">
+	<f:flashMessages />	
+ </div>		  
+
+  <div class="well">
+  Selected news: 
+  <ul>
+	<f:for each="{newsSelected}" as="newsItem">
+		<li>{newsItem}</li>
+	</f:for>
+	</ul>
+  </div>
+
+<f:if condition="{socialSite} == 'facebook'" >
+	<f:form action="facebookPagePost" method="post" enctype="multipart/form-data" name="socialForm">
+	Select Facebook page to post to: 
+	<f:form.select name="fbPage" id="fbPage"
+			options="{pagesSelectOptions}"  
+			optionValueField="key" 
+			optionLabelField="value"
+			prependOptionLabel="- select Facebook Page -" />
+	<input type="button" 
+			onclick="if (document.getElementById('fbPage').value==''){alert('Please select a page')}else{document.socialForm.submit();};" 
+			class="btn btn-primary" 
+			value="Post to selected Facebook page">	
+		<f:form.hidden name="newsItemUids" value="{newsItemUids}" />
+	</f:form>
+
+</f:if>
+
+	
+
+</div>  
+
+</f:section>

@@ -1,0 +1,93 @@
+<f:layout name="Default" />
+<f:section name="main">
+<f:render partial="BE_Include_CSS_JS"  />
+
+<script type="text/javascript" >
+
+	var appId = '{settings.app_id}';
+
+	function facebooklogin() {			
+	
+	 FB.init({
+	    appId      : appId,
+	    cookie     : true,  // enable cookies to allow the server to access 
+	                        // the session
+	    xfbml      : true,  // parse social plugins on this page
+	    version    : 'v2.11' // use version 2.2
+	  });		
+
+		FB.getLoginStatus(function(response) {
+		  if (response.status === 'connected') {
+		  	document.getElementById('userAccessToken').value = FB.getAuthResponse()['accessToken'];
+		   document.socialForm.submit();
+		  } else {
+		    FB.login(function(){}, {scope: 'manage_pages, publish_pages'});
+		    //FB.login(function(){}, {scope: 'publish_action'});
+		  }
+		});
+		
+	}
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+</script>
+
+
+<div class="container theme-showcase" role="main">
+<f:form action="socialPost" method="post" enctype="multipart/form-data" name="socialForm">
+
+ <div class="alert alert-warning" role="alert">
+	<h3>Social Post Module</h3>	
+ </div>	
+	  
+<f:flashMessages />	  
+	  
+  <f:if condition="{error}">
+  	<div id="status" class="alert alert-danger" role="alert">{error}</div>
+  </f:if>	
+
+ <div class="page-header">
+	<h3>Select News records to post:</h3>
+  </div>
+  <div class="well">
+	<f:for each="{news}" as="newsItem">
+		<br><f:form.checkbox name="newsItem[]" value="{newsItem.uid}" /> {newsItem.title}
+	</f:for>
+  </div>
+
+
+
+ <div class="page-header">
+	<h4>Post above to:</h4>
+  </div>
+  <div class="well">
+	
+	<input type="button" 
+			onclick="document.getElementById('socialSite').value='facebook'; facebooklogin(); " 
+			class="btn btn-primary" 
+			value="Facebook">
+
+	<input type="button" 
+			onclick="document.getElementById('socialSite').value='facebook'; document.socialForm.submit(); " 
+			class="btn btn-primary" 
+			value="Testing">
+
+
+  </div>
+  <f:form.hidden name="socialSite" value="facebook" id="socialSite" />
+  <f:form.hidden name="userAccessToken" value="" id="userAccessToken" />
+</f:form>	
+
+      
+</div>      
+
+ 
+</f:section>

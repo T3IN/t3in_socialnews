@@ -1,0 +1,23 @@
+{
+    "name": "t3in/t3in-socialnews",
+    "type": "typo3-cms-extension",
+    "description": "Post tx_News to your Facebook page",
+    "authors": [
+        {
+            "name": "Vikram Mandal",
+            "role": "Developer"
+        }
+    ],
+    "version": "1.0.1",
+    "require": {
+        "typo3/cms-core": "^8.7.1",
+        "facebook/graph-sdk": ">=5.0",
+        "typo3-ter/news": ">6.0" 
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "T3IN\\T3inSocialnews\\": "Classes"
+        }
+    }
+}

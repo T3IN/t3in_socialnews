@@ -1,0 +1,50 @@
+{
+    "modules": [],
+    "properties": {
+        "backendModules": [
+            {
+                "actions": {
+                    "controllerActionCombinations": "SocialPost=>List"
+                },
+                "description": "Social Post",
+                "key": "socialpost",
+                "mainModule": "tools",
+                "name": "Social Post",
+                "tabLabel": "Social Post"
+            }
+        ],
+        "description": "Post tx_News to your Facebook page",
+        "emConf": {
+            "category": "module",
+            "custom_category": "",
+            "dependsOn": "typo3 => 8.7.0-8.7.99\n",
+            "disableLocalization": false,
+            "disableVersioning": false,
+            "skipGenerateDocumentationTemplate": false,
+            "sourceLanguage": "en",
+            "state": "beta",
+            "targetVersion": "8.7.0-8.7.99",
+            "version": "1.0.0"
+        },
+        "extensionKey": "t3in_socialnews",
+        "name": "News to Facebook",
+        "originalExtensionKey": "",
+        "originalVendorName": "",
+        "persons": [
+            {
+                "company": "FiveE Technologies",
+                "email": "vikram@fivee.in",
+                "name": "Vikram Mandal",
+                "role": "Developer"
+            }
+        ],
+        "plugins": [],
+        "vendorName": "T3IN"
+    },
+    "wires": [],
+    "log": {
+        "last_modified": "2017-11-10 01:07",
+        "extension_builder_version": "8.7.0",
+        "be_user": " (1)"
+    }
+}
